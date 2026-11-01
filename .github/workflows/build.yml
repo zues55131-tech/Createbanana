@@ -1,0 +1,25 @@
+name: Gerar jar
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - name: Extrair
+        run: unzip -q bananacreate2_0_corrigido.zip -d proj
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Compilar
+        working-directory: proj
+        run: |
+          chmod +x gradlew
+          ./gradlew build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bananacreate-jar
+          path: proj/build/libs/*.jar
