@@ -11,8 +11,8 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
-      - name: Extrair
-        run: unzip -q bananacreate2_0_corrigido.zip -d proj
+                - name: Extrair
+        run: unzip -q bananacreatee0.67.zip -d proj
       - uses: gradle/actions/setup-gradle@v4
       - name: Compilar
         working-directory: proj
